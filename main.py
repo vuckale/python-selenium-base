@@ -37,3 +37,4 @@ class Bot:
         self.driver.get("https://web.whatsapp.com/")
         
 b = Bot()
+
