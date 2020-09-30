@@ -1,5 +1,5 @@
 ### python-selenium-base
-This is my base setup for selenium in python
+This is my base setup for selenium in python on unix based system
 
 ## Required dependencies:
 `pip3` or `pip`
