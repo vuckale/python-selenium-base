@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager # pip install webdriver-manager
+from webdriver_manager.chrome import ChromeDriverManager
 import pickle
 import local_storage
 import os
@@ -39,7 +39,8 @@ class Bot:
         self.driver = webdriver.Chrome(chrome_options = option, executable_path = ChromeDriverManager().install())
 
         self.driver.get("https://google.com/")
-        
+
+
     def get_storage(self):
         '''get the local storage from current session'''
         global path
