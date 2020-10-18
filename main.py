@@ -42,20 +42,36 @@ class Bot:
 
 
     def get_storage(self):
-        '''get the local storage from current session'''
         global path
 
         # get the local storage
         storage = local_storage.LocalStorage(self.driver)
 
-        with open('/local_storage', 'w') as f:
+        with open(path + '/local_storage', 'w') as f:
             print(storage.items(), file=f)
 
-        with open(path+'/local_storage', 'w') as f:
+        with open(path + '/local_storage_parsed', 'w') as f:
             for key, value in storage.items().items():
                 print(key + '\n' + value, file=f)
 
 
+    def load_storage_existing(self):
+        print("loading storage...")
+        global path
+        # get the local storage
+        storage = local_storage.LocalStorage(self.driver)
+        with open(path+'/local_storage_parsed', 'r') as f:
+            lines = [line.rstrip() for line in f]
+        
+        local_storage_dict = dict(itertools.zip_longest(*[iter(lines)] * 2, fillvalue=""))
+
+        for key, value in local_storage_dict.items():
+            storage[key] = value
+
+        if len(local_storage_dict) > 0:
+            self.driver.refresh()
+
+      
     def load_storage_param(self, file):
         '''load the data from @param file into local storage (must be parsed)'''
         print("loading storage...")
@@ -74,11 +90,9 @@ class Bot:
         if len(local_storage_dict) > 0:
             self.driver.refresh()
 
-        self.init_dir()
-
 
     def get_cookies(self):
-	pickle.dump(self.driver.get_cookies(), open("cookies.pkl", "wb"))
+        pickle.dump(self.driver.get_cookies(), open("cookies.pkl", "wb"))
 
 
     def load_cookies(self):
@@ -89,4 +103,3 @@ class Bot:
             self.driver.add_cookie(cookie)
 
 b = Bot()
-
