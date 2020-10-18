@@ -102,4 +102,9 @@ class Bot:
             print(cookies)
             self.driver.add_cookie(cookie)
 
+
+    def quit(self):
+        self.driver.close()
+        self.driver.quit()
+
 b = Bot()
