@@ -6,10 +6,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 import pickle
-import local_storage
 import os
 import itertools
+
+# local file imports
+import local_storage
+
+#global variables
 path = os.getcwd()
+
 class Bot:
 
     def __init__(self):
@@ -29,7 +34,7 @@ class Bot:
             "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36")
 
         # option.add_argument("start-maximized")
-
+        
         # Pass the argument 1 to allow and 2 to block
         prefs = {"profile.default_content_setting_values.geolocation": 2,
                  "profile.default_content_setting_values.notifications": 1}
@@ -108,3 +113,4 @@ class Bot:
         self.driver.quit()
 
 b = Bot()
+
